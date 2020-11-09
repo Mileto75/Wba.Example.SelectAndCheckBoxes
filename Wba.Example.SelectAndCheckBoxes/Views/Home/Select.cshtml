@@ -1,0 +1,23 @@
+﻿@model HomeSelectVm
+
+<h2>Select a country</h2>
+<form asp-controller="Home"
+      asp-action="Select"
+      method="post">
+    <div class="form-group">
+        <label asp-for="SelectedCountry"></label>
+        <select asp-for="SelectedCountry" 
+                asp-items="@Model.Countries" class="form-control">
+        </select>
+    </div>
+    <div class="form-group">
+        @for(int i=0;i<Model.FavoriteFoods.Count;i++)
+        {
+            <input asp-for="@Model.FavoriteFoods[i].IsSelected" />
+            <input type="hidden" asp-for="@Model.FavoriteFoods[i].Food" />
+            <input type="hidden" asp-for="@Model.FavoriteFoods[i].FoodId" />
+            <label asp-for="@Model.FavoriteFoods[i].Food">@Model.FavoriteFoods[i].Food</label>
+        }
+    </div>
+    <button type="submit" class="btn btn-info">ok</button>
+</form>
